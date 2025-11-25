@@ -2,18 +2,11 @@ import os
 import base64
 import json
 import requests
+from target_packages import TARGET_PACKAGES
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 ORG = os.getenv("ORG")
 TEAM_SLUG = os.getenv("TEAM_SLUG")
-
-TARGET_PACKAGES = {
-    "@accordproject/concerto-analysis": "3.24.1",
-    "@accordproject/concerto-linter": "3.24.1",
-    "@accordproject/concerto-linter-default-ruleset": "3.24.1",
-    "@accordproject/concerto-metamodel": "3.12.5",
-    "@accordproject/markdown-it-cicero": "0.16.26",
-}
 
 HEADERS = {
     "Authorization": f"Bearer {GITHUB_TOKEN}",
