@@ -69,7 +69,9 @@ def scan_repo(repo):
             continue
         packages = lock_json.get("packages", {})
         matched_pkgs = []
-        for pkg_name, target_version in TARGET_PACKAGES.items():
+        for target in TARGET_PACKAGES:
+            pkg_name = target["name"]
+            target_version = target["version"]
             pkg_lock_entry = packages.get(f"node_modules/{pkg_name}")
             if pkg_lock_entry:
                 version = pkg_lock_entry.get("version")
