@@ -1,40 +1,40 @@
 # lockfile-vuln-checker
 
-JavaScript プロジェクトの lockfile（`package-lock.json` や `pnpm-lock.yaml`）を走査し、指定した脆弱性パッケージが利用されていないかチェックするツールです。
+This tool scans JavaScript project lockfiles (`package-lock.json` and `pnpm-lock.yaml`) to check if specified vulnerable packages are being used.
 
-## 特徴
+## Features
 
-- GitHub のチーム配下のリポジトリをスキャン
-- lockfile 内の対象パッケージ（`target_packages.py` で指定可）を検出
-- `package-lock.json` と `pnpm-lock.yaml` の両方に対応
-- 子フォルダ内の lockfile も再帰的にスキャン
+- Scans repositories under a GitHub team
+- Detects target packages specified in `target_packages.py` within lockfiles
+- Supports both `package-lock.json` and `pnpm-lock.yaml`
+- Recursively scans lockfiles in subfolders
 
-## セットアップ
+## Setup
 
-1. [uv](https://github.com/astral-sh/uv) をインストール
-2. プロジェクトディレクトリで以下を実行
+1. Install [uv](https://github.com/astral-sh/uv)
+2. Run the following in your project directory:
 
 ```sh
 uv sync
 ```
 
-これで必要な Python パッケージがインストールされます。
+This will install the required Python packages.
 
-## 使い方
+## Usage
 
-1. `.env.example` をコピーして `.env` を作成し、必要な環境変数を設定してください
+1. Copy `.env.example` to `.env` and set the required environment variables:
 
-   - `GITHUB_TOKEN` : GitHub のアクセストークン
-   - `ORG` : GitHub 組織名
-   - `TEAM_SLUG` : チームのスラッグ
+   - `GITHUB_TOKEN`: GitHub access token
+   - `ORG`: GitHub organization name
+   - `TEAM_SLUG`: Team slug
 
-2. スクリプトを実行
+2. Run the script:
 
 ```sh
 python main.py
 ```
 
-## 出力例
+## Example Output
 
 ```
 Fetching team repositories...
