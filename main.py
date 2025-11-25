@@ -16,7 +16,7 @@ HEADERS = {
 
 
 def get_team_repos():
-    """Team 配下のすべてのリポジトリを取得"""
+    """Fetch all repositories under the specified team."""
     url = f"https://api.github.com/orgs/{ORG}/teams/{TEAM_SLUG}/repos"
     repos = []
     page = 1
@@ -35,7 +35,7 @@ def get_team_repos():
 
 
 def get_all_lockfile_paths(repo_full_name):
-    """リポジトリ内のすべての lockfile のパスを再帰的に取得 (package-lock.json, pnpm-lock.yaml)"""
+    """Recursively fetch all lockfile paths (package-lock.json, pnpm-lock.yaml) in the repository."""
     url = f"https://api.github.com/repos/{repo_full_name}/git/trees/HEAD?recursive=1"
     r = requests.get(url, headers=HEADERS)
     if r.status_code != 200:
@@ -51,7 +51,7 @@ def get_all_lockfile_paths(repo_full_name):
 
 
 def get_lockfile_content(repo_full_name, path):
-    """指定リポジトリ・パスの lockfile を取得し、パースして返す"""
+    """Fetch and parse the lockfile from the specified repository and path."""
     url = f"https://api.github.com/repos/{repo_full_name}/contents/{path}"
     r = requests.get(url, headers=HEADERS)
     if r.status_code == 404:
@@ -68,7 +68,7 @@ def get_lockfile_content(repo_full_name, path):
 
 
 def scan_repo(repo):
-    """リポジトリ内のすべての lockfile を走査し、該当パッケージを返す"""
+    """Scan all lockfiles in the repository and return matched target packages."""
     repo_full_name = repo["full_name"]
     lock_paths = get_all_lockfile_paths(repo_full_name)
     found = []
